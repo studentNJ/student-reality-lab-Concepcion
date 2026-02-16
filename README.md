@@ -76,7 +76,7 @@ Primary metric reported:
 **Rent Burden (%)**
 
 $$
-	ext{Rent Burden (\%)} = \frac{\text{Median Monthly Rent}}{\text{Median Monthly Income}} \times 100
+	{Rent Burden (\%)} = \frac{\text{Median Monthly Rent}}{\text{Median Monthly Income}} \times 100
 $$
 
 Additional metric:
