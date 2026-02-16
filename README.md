@@ -176,12 +176,4 @@ Includes:
 - Notes on cleaning and transformation
 - Any assumptions made during preprocessing
 
-## Gate Reflection
 
-The datasets used are:
-
-- Government-backed
-- Public domain
-- Clearly defined in methodology
-
-If inconsistencies or major missing data prevent valid metro-level comparison, I will pivot to an instructor-provided starter dataset.
