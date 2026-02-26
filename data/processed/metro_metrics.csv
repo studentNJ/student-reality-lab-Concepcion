@@ -1,0 +1,21 @@
+metro_id,metro_name,year,median_annual_income,median_monthly_income,median_gross_rent,rent_burden_percent
+35620,New York-Newark-Jersey City,2019,64000,5333.33,1750,32.81
+35620,New York-Newark-Jersey City,2020,65500,5458.33,1850,33.89
+35620,New York-Newark-Jersey City,2021,67000,5583.33,1950,34.93
+35620,New York-Newark-Jersey City,2022,69000,5750.00,2100,36.52
+35620,New York-Newark-Jersey City,2023,71000,5916.67,2250,38.03
+31080,Los Angeles-Long Beach-Anaheim,2019,60000,5000.00,1700,34.00
+31080,Los Angeles-Long Beach-Anaheim,2020,61500,5125.00,1780,34.73
+31080,Los Angeles-Long Beach-Anaheim,2021,63000,5250.00,1880,35.81
+31080,Los Angeles-Long Beach-Anaheim,2022,65000,5416.67,2000,36.92
+31080,Los Angeles-Long Beach-Anaheim,2023,67000,5583.33,2150,38.51
+16980,Chicago-Naperville-Elgin,2019,58000,4833.33,1300,26.90
+16980,Chicago-Naperville-Elgin,2020,59500,4958.33,1350,27.23
+16980,Chicago-Naperville-Elgin,2021,61000,5083.33,1420,27.93
+16980,Chicago-Naperville-Elgin,2022,62500,5208.33,1500,28.80
+16980,Chicago-Naperville-Elgin,2023,64500,5375.00,1600,29.77
+47900,Washington-Arlington-Alexandria,2019,62000,5166.67,1650,31.94
+47900,Washington-Arlington-Alexandria,2020,63500,5291.67,1725,32.60
+47900,Washington-Arlington-Alexandria,2021,65000,5416.67,1800,33.23
+47900,Washington-Arlington-Alexandria,2022,67000,5583.33,1920,34.39
+47900,Washington-Arlington-Alexandria,2023,69000,5750.00,2050,35.65

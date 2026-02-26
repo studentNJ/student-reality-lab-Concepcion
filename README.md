@@ -175,4 +175,32 @@ Includes:
 - Notes on cleaning and transformation
 - Any assumptions made during preprocessing
 
+## Local Database Quickstart
+
+### Prerequisites
+
+- Docker + Docker Compose
+- Node.js and npm
+
+### One-command setup (start PostgreSQL + sync schema + seed)
+
+1. Copy environment template:
+
+	- `cp .env.example .env`
+
+2. Enable database mode in `.env`:
+
+	- `USE_DATABASE="true"`
+
+3. Bootstrap local DB:
+
+	- `npm run db:dev`
+
+### Useful commands
+
+- Start DB only: `npm run db:up`
+- Stop DB: `npm run db:down`
+- Reset DB volume + reseed: `npm run db:reset`
+- Run app: `npm run dev`
+
 

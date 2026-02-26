@@ -1,0 +1,35 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Metro {
+  id      String        @id
+  name    String
+  metrics MetroMetric[]
+}
+
+model MetroMetric {
+  metro_id              String
+  year                  Int
+  median_annual_income  Float
+  median_monthly_income Float
+  median_gross_rent     Float
+  rent_burden_percent   Float
+  metro                 Metro   @relation(fields: [metro_id], references: [id], onDelete: Cascade)
+
+  @@id([metro_id, year])
+  @@index([year])
+}
+
+model Source {
+  id           Int      @id @default(autoincrement())
+  dataset_name String   @unique
+  source_url   String
+  retrieved_at DateTime
+  notes        String?
+}
