@@ -86,9 +86,9 @@ Additional metric:
 
 ### Income Data
 
-- **Source:** U.S. Bureau of Labor Statistics (BLS)
-- **Dataset:** Median weekly earnings by age group (25–34)
-- **Accessed via:** https://www.bls.gov
+- **Source:** U.S. Census Bureau
+- **Dataset:** Income Source: U.S. Census Bureau — American Community Survey (ACS), Table B20001
+- **Accessed via:** https://data.census.gov/table?q=B20001:+Sex+by+Earnings+in+the+Past+12+Months+(in+2024+Inflation-Adjusted+Dollars)+for+the+Population+16+Years+and+Over+With+Earnings+in+the+Past+12+Months&g=010XX00US$31000M1
 - **Retrieval Date:** [INSERT DATE]
 - **License:** U.S. Government public domain data
 
@@ -96,7 +96,7 @@ Additional metric:
 
 - **Source:** U.S. Census Bureau — American Community Survey (ACS)
 - **Dataset:** Median gross rent by metropolitan statistical area
-- **Accessed via:** https://data.census.gov
+- **Accessed via:** https://data.census.gov/table?q=B25064:+MEDIAN+GROSS+RENT+(DOLLARS)&g=010XX00US$31000M1
 - **Retrieval Date:** [INSERT DATE]
 - **License:** U.S. Government public domain data
 
