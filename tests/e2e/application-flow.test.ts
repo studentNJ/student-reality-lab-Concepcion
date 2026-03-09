@@ -19,9 +19,15 @@ describe("application flow e2e", () => {
     expect(rent).not.toBeNull();
 
     const resultNoLoan = calculateAffordability(90000, rent!, 0);
-    const resultWithLoan = calculateAffordability(90000, rent!, 300);
+    const resultWithLoan = calculateAffordability(90000, rent!, {
+      monthlyStudentLoan: 300,
+      roommates: 1,
+      useEstimatedAfterTaxIncome: true,
+    });
 
     expect(resultWithLoan.monthlyDisposableIncome).toBeLessThan(resultNoLoan.monthlyDisposableIncome);
+    expect(resultWithLoan.effectiveMonthlyRent).toBeLessThan(rent!);
+    expect(resultWithLoan.salaryNeededForThirtyPercent).toBeGreaterThan(0);
     expect(["Safe", "Risky", "Cost-burdened"]).toContain(resultNoLoan.risk);
   });
 

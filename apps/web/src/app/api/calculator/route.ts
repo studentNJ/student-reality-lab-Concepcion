@@ -6,7 +6,9 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const annualSalary = Number(body.annualSalary);
     const metroId = String(body.metroId ?? "");
-    const monthlyStudentLoan = Number(body.monthlyStudentLoan ?? 0);
+    const monthlyStudentLoan = body.monthlyStudentLoan === undefined ? 0 : Number(body.monthlyStudentLoan);
+    const roommates = body.roommates === undefined ? 0 : Number(body.roommates);
+    const useEstimatedAfterTaxIncome = Boolean(body.useEstimatedAfterTaxIncome);
 
     if (!metroId) {
       return NextResponse.json({ error: "metroId is required" }, { status: 400 });
@@ -17,7 +19,11 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Metro not found" }, { status: 404 });
     }
 
-    const result = calculateAffordability(annualSalary, latestRent, monthlyStudentLoan);
+    const result = calculateAffordability(annualSalary, latestRent, {
+      monthlyStudentLoan,
+      roommates,
+      useEstimatedAfterTaxIncome,
+    });
 
     return NextResponse.json(result);
   } catch (error) {

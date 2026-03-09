@@ -17,6 +17,10 @@ describe("health/source integration", () => {
     const status = await getDataSourceStatus();
     expect(status.configuredMode).toBe("csv");
     expect(status.activeSource).toBe("csv_fallback");
+    expect(status.datasetLabel).toBe("Sample Dataset");
+    expect(status.metroCount).toBeGreaterThanOrEqual(10);
+    expect(status.startYear).toBe(2015);
+    expect(status.endYear).toBe(2025);
   });
 
   it("reports fallback when database mode is enabled but unavailable", async () => {
@@ -26,5 +30,6 @@ describe("health/source integration", () => {
     const status = await getDataSourceStatus();
     expect(status.configuredMode).toBe("database");
     expect(["database", "csv_fallback"]).toContain(status.activeSource);
+    expect(["Sample Dataset", "Production Dataset"]).toContain(status.datasetLabel);
   });
 });

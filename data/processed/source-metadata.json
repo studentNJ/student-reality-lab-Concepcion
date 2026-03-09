@@ -1,0 +1,9 @@
+{
+  "datasetType": "sample",
+  "displayName": "Sample Dataset",
+  "source": "Placeholder metro dataset bundled with the repository",
+  "metroCount": 10,
+  "startYear": 2015,
+  "endYear": 2025,
+  "lastRefreshed": "2026-03-09"
+}

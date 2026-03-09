@@ -9,7 +9,10 @@
   "scripts": {
     "dev": "npm --prefix apps/web run dev",
     "build": "npm --prefix apps/web run build",
+    "start": "npm run build && npm --prefix apps/web run start",
     "lint": "npm --prefix apps/web run lint",
+    "data:build": "python3 scripts/ingest/build_metrics.py",
+    "data:refresh": "npm run data:build && npm run db:load",
     "db:generate": "npm --prefix packages/db run prisma:generate",
     "db:migrate": "npm --prefix packages/db run prisma:migrate",
     "db:push": "npm --prefix packages/db run prisma:push",

@@ -1,8 +1,13 @@
 import fs from "node:fs";
 import path from "node:path";
+import {
+  calculateAffordability as calculateAffordabilityValue,
+  classifyRisk as classifyRiskValue,
+  type Risk,
+} from "./calculations";
 
-export type Risk = "Safe" | "Risky" | "Cost-burdened";
 export type DataSource = "database" | "csv_fallback";
+export type DatasetType = "sample" | "production";
 
 export interface MetroMetric {
   metro_id: string;
@@ -42,6 +47,28 @@ interface PrismaMetricRow {
   metro?: { id: string; name: string };
 }
 
+interface DataStatusMetadata {
+  datasetType?: DatasetType;
+  displayName?: string;
+  source?: string;
+  metroCount?: number;
+  startYear?: number;
+  endYear?: number;
+  lastRefreshed?: string;
+}
+
+export interface DataSourceStatus {
+  configuredMode: "database" | "csv";
+  activeSource: DataSource;
+  datasetType: DatasetType;
+  datasetLabel: string;
+  sourceDescription: string | null;
+  metroCount: number;
+  startYear: number | null;
+  endYear: number | null;
+  lastRefreshed: string | null;
+}
+
 let cached: MetroMetric[] | null = null;
 let prismaClient: unknown | null = null;
 
@@ -50,12 +77,21 @@ const fileCandidates = [
   path.resolve(process.cwd(), "..", "..", "data", "processed", "metro_metrics.csv"),
 ];
 
+const metadataCandidates = [
+  path.resolve(process.cwd(), "data", "processed", "source-metadata.json"),
+  path.resolve(process.cwd(), "..", "..", "data", "processed", "source-metadata.json"),
+];
+
 function resolveMetricsFilePath() {
   const file = fileCandidates.find((candidate) => fs.existsSync(candidate));
   if (!file) {
     throw new Error("Could not locate data/processed/metro_metrics.csv");
   }
   return file;
+}
+
+function resolveMetadataFilePath() {
+  return metadataCandidates.find((candidate) => fs.existsSync(candidate)) ?? null;
 }
 
 function parseNumber(value: string): number {
@@ -68,6 +104,14 @@ function parseNumber(value: string): number {
 
 function roundToTwo(value: number) {
   return Number(value.toFixed(2));
+}
+
+function formatDateString(value: string | undefined) {
+  if (!value) {
+    return null;
+  }
+
+  return value.slice(0, 10);
 }
 
 function isYearInRange(year: number, startYear: number, endYear: number) {
@@ -195,36 +239,7 @@ async function getPrismaClient() {
 }
 
 export function classifyRisk(rentBurdenPercent: number): Risk {
-  if (rentBurdenPercent < 25) {
-    return "Safe";
-  }
-  if (rentBurdenPercent <= 35) {
-    return "Risky";
-  }
-  return "Cost-burdened";
-}
-
-export function calculateAffordability(
-  annualSalary: number,
-  medianGrossRent: number,
-  monthlyStudentLoan = 0,
-) {
-  if (annualSalary <= 0) {
-    throw new Error("annualSalary must be greater than 0");
-  }
-  if (monthlyStudentLoan < 0) {
-    throw new Error("monthlyStudentLoan cannot be negative");
-  }
-
-  const monthlyIncome = annualSalary / 12;
-  const rentBurdenPercent = (medianGrossRent / monthlyIncome) * 100;
-  const monthlyDisposableIncome = monthlyIncome - medianGrossRent - monthlyStudentLoan;
-
-  return {
-    rentBurdenPercent: Number(rentBurdenPercent.toFixed(2)),
-    monthlyDisposableIncome: Number(monthlyDisposableIncome.toFixed(2)),
-    risk: classifyRisk(rentBurdenPercent),
-  };
+  return classifyRiskValue(rentBurdenPercent);
 }
 
 export function getAllMetrics(): MetroMetric[] {
@@ -304,6 +319,54 @@ export function getLatestRentByMetro(metroId: string) {
 
 export function getAvailableYears(): number[] {
   return Array.from(new Set(getAllMetrics().map((row) => row.year))).sort((a, b) => a - b);
+}
+
+function readDataStatusMetadata(): DataStatusMetadata | null {
+  const metadataPath = resolveMetadataFilePath();
+  if (!metadataPath) {
+    return null;
+  }
+
+  try {
+    return JSON.parse(fs.readFileSync(metadataPath, "utf8")) as DataStatusMetadata;
+  } catch {
+    return null;
+  }
+}
+
+function getDerivedDataStatus() {
+  const rows = getAllMetrics();
+  const years = getAvailableYears();
+  const metricsPath = resolveMetricsFilePath();
+  const stats = fs.statSync(metricsPath);
+
+  return {
+    datasetType: "sample" as DatasetType,
+    datasetLabel: "Sample Dataset",
+    sourceDescription: "Bundled placeholder data stored in data/processed/metro_metrics.csv",
+    metroCount: getMetros().length,
+    startYear: years[0] ?? null,
+    endYear: years[years.length - 1] ?? null,
+    lastRefreshed: stats.mtime.toISOString().slice(0, 10),
+    rowCount: rows.length,
+  };
+}
+
+export function getDataStatusSummary() {
+  const metadata = readDataStatusMetadata();
+  const derived = getDerivedDataStatus();
+
+  return {
+    datasetType: metadata?.datasetType ?? derived.datasetType,
+    datasetLabel:
+      metadata?.displayName ??
+      (metadata?.datasetType === "production" ? "Production Dataset" : derived.datasetLabel),
+    sourceDescription: metadata?.source ?? derived.sourceDescription,
+    metroCount: metadata?.metroCount ?? derived.metroCount,
+    startYear: metadata?.startYear ?? derived.startYear,
+    endYear: metadata?.endYear ?? derived.endYear,
+    lastRefreshed: formatDateString(metadata?.lastRefreshed) ?? derived.lastRefreshed,
+  };
 }
 
 export async function getMetrosData() {
@@ -403,14 +466,16 @@ export async function getLatestRentByMetroData(metroId: string) {
   return trend[trend.length - 1].median_gross_rent;
 }
 
-export async function getDataSourceStatus() {
+export async function getDataSourceStatus(): Promise<DataSourceStatus> {
   const configuredMode = shouldUseDatabase() ? "database" : "csv";
   const prisma = await getPrismaClient();
+  const summary = getDataStatusSummary();
 
   if (!prisma) {
     return {
       configuredMode,
       activeSource: "csv_fallback" as DataSource,
+      ...summary,
     };
   }
 
@@ -419,11 +484,15 @@ export async function getDataSourceStatus() {
     return {
       configuredMode,
       activeSource: "database" as DataSource,
+      ...summary,
     };
   } catch {
     return {
       configuredMode,
       activeSource: "csv_fallback" as DataSource,
+      ...summary,
     };
   }
 }
+
+export const calculateAffordability = calculateAffordabilityValue;
