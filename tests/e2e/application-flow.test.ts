@@ -1,13 +1,16 @@
 import { describe, expect, it } from "vitest";
-import { calculateAffordability, getLatestRentByMetro, getMetricsByYear, getTrendByMetro } from "../../apps/web/src/lib/metrics";
+import { calculateAffordability, getLatestRentByMetro, getMetricsByRange, getMetricsByYear, getTrendByMetro } from "../../apps/web/src/lib/metrics";
 
 describe("application flow e2e", () => {
   it("supports dashboard year selection and metro drill-down", () => {
     const dashboardRows = getMetricsByYear(2023);
     expect(dashboardRows.length).toBeGreaterThan(0);
 
+    const multiYearRows = getMetricsByRange(2020, 2025);
+    expect(multiYearRows.length).toBeGreaterThanOrEqual(10);
+
     const selectedMetro = dashboardRows[0].metro_id;
-    const trend = getTrendByMetro(selectedMetro);
+    const trend = getTrendByMetro(selectedMetro, 2020, 2025);
     expect(trend.length).toBeGreaterThan(0);
   });
 

@@ -1,21 +1,111 @@
 metro_id,metro_name,year,median_annual_income,median_monthly_income,median_gross_rent,rent_burden_percent
-35620,New York-Newark-Jersey City,2019,64000,5333.33,1750,32.81
-35620,New York-Newark-Jersey City,2020,65500,5458.33,1850,33.89
-35620,New York-Newark-Jersey City,2021,67000,5583.33,1950,34.93
-35620,New York-Newark-Jersey City,2022,69000,5750.00,2100,36.52
-35620,New York-Newark-Jersey City,2023,71000,5916.67,2250,38.03
-31080,Los Angeles-Long Beach-Anaheim,2019,60000,5000.00,1700,34.00
-31080,Los Angeles-Long Beach-Anaheim,2020,61500,5125.00,1780,34.73
-31080,Los Angeles-Long Beach-Anaheim,2021,63000,5250.00,1880,35.81
-31080,Los Angeles-Long Beach-Anaheim,2022,65000,5416.67,2000,36.92
-31080,Los Angeles-Long Beach-Anaheim,2023,67000,5583.33,2150,38.51
-16980,Chicago-Naperville-Elgin,2019,58000,4833.33,1300,26.90
-16980,Chicago-Naperville-Elgin,2020,59500,4958.33,1350,27.23
-16980,Chicago-Naperville-Elgin,2021,61000,5083.33,1420,27.93
-16980,Chicago-Naperville-Elgin,2022,62500,5208.33,1500,28.80
-16980,Chicago-Naperville-Elgin,2023,64500,5375.00,1600,29.77
-47900,Washington-Arlington-Alexandria,2019,62000,5166.67,1650,31.94
-47900,Washington-Arlington-Alexandria,2020,63500,5291.67,1725,32.60
-47900,Washington-Arlington-Alexandria,2021,65000,5416.67,1800,33.23
-47900,Washington-Arlington-Alexandria,2022,67000,5583.33,1920,34.39
-47900,Washington-Arlington-Alexandria,2023,69000,5750.00,2050,35.65
+35620,New York-Newark-Jersey City,2015,60000,5000.00,1650,33.00
+35620,New York-Newark-Jersey City,2016,61400,5116.67,1720,33.62
+35620,New York-Newark-Jersey City,2017,62800,5233.33,1790,34.20
+35620,New York-Newark-Jersey City,2018,64200,5350.00,1860,34.77
+35620,New York-Newark-Jersey City,2019,65600,5466.67,1930,35.30
+35620,New York-Newark-Jersey City,2020,67000,5583.33,2000,35.82
+35620,New York-Newark-Jersey City,2021,68400,5700.00,2070,36.32
+35620,New York-Newark-Jersey City,2022,69800,5816.67,2140,36.79
+35620,New York-Newark-Jersey City,2023,71200,5933.33,2210,37.25
+35620,New York-Newark-Jersey City,2024,72600,6050.00,2280,37.69
+35620,New York-Newark-Jersey City,2025,74000,6166.67,2350,38.11
+31080,Los Angeles-Long Beach-Anaheim,2015,57000,4750.00,1600,33.68
+31080,Los Angeles-Long Beach-Anaheim,2016,58300,4858.33,1668,34.33
+31080,Los Angeles-Long Beach-Anaheim,2017,59600,4966.67,1736,34.95
+31080,Los Angeles-Long Beach-Anaheim,2018,60900,5075.00,1804,35.55
+31080,Los Angeles-Long Beach-Anaheim,2019,62200,5183.33,1872,36.12
+31080,Los Angeles-Long Beach-Anaheim,2020,63500,5291.67,1940,36.66
+31080,Los Angeles-Long Beach-Anaheim,2021,64800,5400.00,2008,37.19
+31080,Los Angeles-Long Beach-Anaheim,2022,66100,5508.33,2076,37.69
+31080,Los Angeles-Long Beach-Anaheim,2023,67400,5616.67,2144,38.17
+31080,Los Angeles-Long Beach-Anaheim,2024,68700,5725.00,2212,38.64
+31080,Los Angeles-Long Beach-Anaheim,2025,70000,5833.33,2280,39.09
+16980,Chicago-Naperville-Elgin,2015,54000,4500.00,1225,27.22
+16980,Chicago-Naperville-Elgin,2016,55100,4591.67,1263,27.51
+16980,Chicago-Naperville-Elgin,2017,56200,4683.33,1301,27.78
+16980,Chicago-Naperville-Elgin,2018,57300,4775.00,1339,28.04
+16980,Chicago-Naperville-Elgin,2019,58400,4866.67,1377,28.29
+16980,Chicago-Naperville-Elgin,2020,59500,4958.33,1415,28.54
+16980,Chicago-Naperville-Elgin,2021,60600,5050.00,1453,28.77
+16980,Chicago-Naperville-Elgin,2022,61700,5141.67,1491,29.00
+16980,Chicago-Naperville-Elgin,2023,62800,5233.33,1529,29.22
+16980,Chicago-Naperville-Elgin,2024,63900,5325.00,1567,29.43
+16980,Chicago-Naperville-Elgin,2025,65000,5416.67,1605,29.63
+47900,Washington-Arlington-Alexandria,2015,59000,4916.67,1550,31.53
+47900,Washington-Arlington-Alexandria,2016,60250,5020.83,1608,32.03
+47900,Washington-Arlington-Alexandria,2017,61500,5125.00,1666,32.51
+47900,Washington-Arlington-Alexandria,2018,62750,5229.17,1724,32.97
+47900,Washington-Arlington-Alexandria,2019,64000,5333.33,1782,33.41
+47900,Washington-Arlington-Alexandria,2020,65250,5437.50,1840,33.84
+47900,Washington-Arlington-Alexandria,2021,66500,5541.67,1898,34.25
+47900,Washington-Arlington-Alexandria,2022,67750,5645.83,1956,34.65
+47900,Washington-Arlington-Alexandria,2023,69000,5750.00,2014,35.03
+47900,Washington-Arlington-Alexandria,2024,70250,5854.17,2072,35.39
+47900,Washington-Arlington-Alexandria,2025,71500,5958.33,2130,35.75
+33100,Miami-Fort Lauderdale-West Palm Beach,2015,50000,4166.67,1450,34.80
+33100,Miami-Fort Lauderdale-West Palm Beach,2016,51050,4254.17,1512,35.54
+33100,Miami-Fort Lauderdale-West Palm Beach,2017,52100,4341.67,1574,36.25
+33100,Miami-Fort Lauderdale-West Palm Beach,2018,53150,4429.17,1636,36.94
+33100,Miami-Fort Lauderdale-West Palm Beach,2019,54200,4516.67,1698,37.59
+33100,Miami-Fort Lauderdale-West Palm Beach,2020,55250,4604.17,1760,38.23
+33100,Miami-Fort Lauderdale-West Palm Beach,2021,56300,4691.67,1822,38.83
+33100,Miami-Fort Lauderdale-West Palm Beach,2022,57350,4779.17,1884,39.42
+33100,Miami-Fort Lauderdale-West Palm Beach,2023,58400,4866.67,1946,39.99
+33100,Miami-Fort Lauderdale-West Palm Beach,2024,59450,4954.17,2008,40.53
+33100,Miami-Fort Lauderdale-West Palm Beach,2025,60500,5041.67,2070,41.06
+37980,Philadelphia-Camden-Wilmington,2015,53000,4416.67,1325,30.00
+37980,Philadelphia-Camden-Wilmington,2016,54000,4500.00,1370,30.44
+37980,Philadelphia-Camden-Wilmington,2017,55000,4583.33,1415,30.87
+37980,Philadelphia-Camden-Wilmington,2018,56000,4666.67,1460,31.29
+37980,Philadelphia-Camden-Wilmington,2019,57000,4750.00,1505,31.68
+37980,Philadelphia-Camden-Wilmington,2020,58000,4833.33,1550,32.07
+37980,Philadelphia-Camden-Wilmington,2021,59000,4916.67,1595,32.44
+37980,Philadelphia-Camden-Wilmington,2022,60000,5000.00,1640,32.80
+37980,Philadelphia-Camden-Wilmington,2023,61000,5083.33,1685,33.15
+37980,Philadelphia-Camden-Wilmington,2024,62000,5166.67,1730,33.48
+37980,Philadelphia-Camden-Wilmington,2025,63000,5250.00,1775,33.81
+19100,Dallas-Fort Worth-Arlington,2015,52000,4333.33,1280,29.54
+19100,Dallas-Fort Worth-Arlington,2016,53150,4429.17,1328,29.98
+19100,Dallas-Fort Worth-Arlington,2017,54300,4525.00,1376,30.41
+19100,Dallas-Fort Worth-Arlington,2018,55450,4620.83,1424,30.82
+19100,Dallas-Fort Worth-Arlington,2019,56600,4716.67,1472,31.21
+19100,Dallas-Fort Worth-Arlington,2020,57750,4812.50,1520,31.58
+19100,Dallas-Fort Worth-Arlington,2021,58900,4908.33,1568,31.95
+19100,Dallas-Fort Worth-Arlington,2022,60050,5004.17,1616,32.29
+19100,Dallas-Fort Worth-Arlington,2023,61200,5100.00,1664,32.63
+19100,Dallas-Fort Worth-Arlington,2024,62350,5195.83,1712,32.95
+19100,Dallas-Fort Worth-Arlington,2025,63500,5291.67,1760,33.26
+26420,Houston-The Woodlands-Sugar Land,2015,51000,4250.00,1235,29.06
+26420,Houston-The Woodlands-Sugar Land,2016,52080,4340.00,1279,29.47
+26420,Houston-The Woodlands-Sugar Land,2017,53160,4430.00,1323,29.86
+26420,Houston-The Woodlands-Sugar Land,2018,54240,4520.00,1367,30.24
+26420,Houston-The Woodlands-Sugar Land,2019,55320,4610.00,1411,30.61
+26420,Houston-The Woodlands-Sugar Land,2020,56400,4700.00,1455,30.96
+26420,Houston-The Woodlands-Sugar Land,2021,57480,4790.00,1499,31.29
+26420,Houston-The Woodlands-Sugar Land,2022,58560,4880.00,1543,31.62
+26420,Houston-The Woodlands-Sugar Land,2023,59640,4970.00,1587,31.93
+26420,Houston-The Woodlands-Sugar Land,2024,60720,5060.00,1631,32.23
+26420,Houston-The Woodlands-Sugar Land,2025,61800,5150.00,1675,32.52
+12060,Atlanta-Sandy Springs-Roswell,2015,51500,4291.67,1260,29.36
+12060,Atlanta-Sandy Springs-Roswell,2016,52625,4385.42,1310,29.87
+12060,Atlanta-Sandy Springs-Roswell,2017,53750,4479.17,1360,30.36
+12060,Atlanta-Sandy Springs-Roswell,2018,54875,4572.92,1410,30.83
+12060,Atlanta-Sandy Springs-Roswell,2019,56000,4666.67,1460,31.29
+12060,Atlanta-Sandy Springs-Roswell,2020,57125,4760.42,1510,31.72
+12060,Atlanta-Sandy Springs-Roswell,2021,58250,4854.17,1560,32.14
+12060,Atlanta-Sandy Springs-Roswell,2022,59375,4947.92,1610,32.54
+12060,Atlanta-Sandy Springs-Roswell,2023,60500,5041.67,1660,32.93
+12060,Atlanta-Sandy Springs-Roswell,2024,61625,5135.42,1710,33.30
+12060,Atlanta-Sandy Springs-Roswell,2025,62750,5229.17,1760,33.66
+38060,Phoenix-Mesa-Chandler,2015,49500,4125.00,1185,28.73
+38060,Phoenix-Mesa-Chandler,2016,50680,4223.33,1241,29.38
+38060,Phoenix-Mesa-Chandler,2017,51860,4321.67,1297,30.01
+38060,Phoenix-Mesa-Chandler,2018,53040,4420.00,1353,30.61
+38060,Phoenix-Mesa-Chandler,2019,54220,4518.33,1409,31.18
+38060,Phoenix-Mesa-Chandler,2020,55400,4616.67,1465,31.73
+38060,Phoenix-Mesa-Chandler,2021,56580,4715.00,1521,32.26
+38060,Phoenix-Mesa-Chandler,2022,57760,4813.33,1577,32.76
+38060,Phoenix-Mesa-Chandler,2023,58940,4911.67,1633,33.25
+38060,Phoenix-Mesa-Chandler,2024,60120,5010.00,1689,33.71
+38060,Phoenix-Mesa-Chandler,2025,61300,5108.33,1745,34.16

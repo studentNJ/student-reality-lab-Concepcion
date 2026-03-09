@@ -3,15 +3,16 @@
 import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Bar, BarChart, CartesianGrid, Cell, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
-import type { MetroMetric } from "@/lib/metrics";
+import type { DashboardMetric } from "@/lib/metrics";
 
 interface DashboardClientProps {
   years: number[];
 }
 
 export default function DashboardClient({ years }: DashboardClientProps) {
-  const [year, setYear] = useState<number>(years[years.length - 1] ?? 2023);
-  const [data, setData] = useState<MetroMetric[]>([]);
+  const latestYear = years[years.length - 1] ?? 2025;
+  const [selectedYear, setSelectedYear] = useState<number>(latestYear);
+  const [data, setData] = useState<DashboardMetric[]>([]);
   const [error, setError] = useState<string>("");
   const [chartsReady, setChartsReady] = useState(false);
   const router = useRouter();
@@ -24,11 +25,12 @@ export default function DashboardClient({ years }: DashboardClientProps) {
     async function run() {
       try {
         setError("");
-        const response = await fetch(`/api/metrics?year=${year}`);
+        const params = new URLSearchParams({ year: String(selectedYear) });
+        const response = await fetch(`/api/metrics?${params.toString()}`);
         if (!response.ok) {
           throw new Error("Failed to fetch metrics");
         }
-        const json = (await response.json()) as MetroMetric[];
+        const json = (await response.json()) as DashboardMetric[];
         setData(json);
       } catch {
         setError("Could not load metrics.");
@@ -36,25 +38,35 @@ export default function DashboardClient({ years }: DashboardClientProps) {
     }
 
     run();
-  }, [year]);
+  }, [selectedYear]);
 
   const sorted = useMemo(() => [...data].sort((a, b) => b.rent_burden_percent - a.rent_burden_percent), [data]);
 
   return (
     <section className="space-y-4">
-      <div className="flex items-center gap-2">
-        <label htmlFor="year" className="text-sm font-medium">Year</label>
-        <select
-          id="year"
-          className="rounded border px-2 py-1"
-          value={year}
-          onChange={(event) => setYear(Number(event.target.value))}
-        >
-          {years.map((item) => (
-            <option key={item} value={item}>{item}</option>
-          ))}
-        </select>
+      <div className="flex flex-wrap items-end gap-4">
+        <div className="grid gap-1">
+          <label htmlFor="dashboard-year" className="text-sm font-medium">Year</label>
+          <select
+            id="dashboard-year"
+            className="rounded border px-2 py-1"
+            value={selectedYear}
+            onChange={(event) => setSelectedYear(Number(event.target.value))}
+          >
+            {years.map((year) => (
+              <option key={year} value={year}>{year}</option>
+            ))}
+          </select>
+        </div>
+
+        <p className="text-sm text-gray-600">
+          Showing the rent-burden snapshot for {selectedYear}.
+        </p>
       </div>
+
+      <p className="text-sm text-gray-600">
+        {sorted.length} metros available in the selected year.
+      </p>
 
       {error ? <p className="text-sm text-red-600">{error}</p> : null}
 
@@ -69,12 +81,15 @@ export default function DashboardClient({ years }: DashboardClientProps) {
               <Bar
                 dataKey="rent_burden_percent"
                 onClick={(entry: unknown) => {
-                  const selected = entry as MetroMetric;
+                  const selected = entry as DashboardMetric;
                   router.push(`/metro/${selected.metro_id}`);
                 }}
               >
                 {sorted.map((entry) => (
-                  <Cell key={`${entry.metro_id}-${entry.year}`} fill={entry.rent_burden_percent > 30 ? "#dc2626" : "#2563eb"} />
+                  <Cell
+                    key={`${entry.metro_id}-${entry.start_year}-${entry.end_year}`}
+                    fill={entry.rent_burden_percent > 30 ? "#dc2626" : "#2563eb"}
+                  />
                 ))}
               </Bar>
             </BarChart>

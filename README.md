@@ -39,10 +39,12 @@ I will build:
 
 - Rent-to-income ratio (%) for ages 25–34 across selected U.S. metro areas.
 - Cities exceeding 30% will be highlighted in red.
+- Dashboard includes a year selector within the available 2015-2025 dataset window.
 
 #### Trend Line Chart (2015–2025)
 
 - Rent burden over time to show whether affordability has worsened.
+- Metro detail page supports start/end year controls for narrowing or expanding the displayed trend window.
 
 #### Interactive Calculator (Planned Extension)
 
@@ -83,6 +85,11 @@ Additional metric:
 - Percentage of analyzed metro areas above 30%.
 
 ## Dataset & Provenance
+
+Current repository status:
+
+- `data/processed/metro_metrics.csv` ships a placeholder sample dataset covering 10 metros across 2015–2025 so the dashboard and detail chart can exercise the full timeframe controls.
+- The ACS links below remain the intended authoritative source references for a future raw-data ingest pipeline.
 
 ### Income Data
 

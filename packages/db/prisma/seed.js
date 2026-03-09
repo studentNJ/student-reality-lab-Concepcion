@@ -64,17 +64,17 @@ async function main() {
 	}
 
 	await prisma.source.upsert({
-		where: { dataset_name: "ACS B25064 + B20001 (2023 sample)" },
+		where: { dataset_name: "ACS-aligned placeholder metro metrics (2015-2025 sample)" },
 		update: {
 			source_url: "https://api.census.gov/data/2023/acs/acs5",
 			retrieved_at: new Date(),
-			notes: "Seeded from data/processed/metro_metrics.csv",
+			notes: "Seeded from data/processed/metro_metrics.csv with 10 placeholder metros across 2015-2025",
 		},
 		create: {
-			dataset_name: "ACS B25064 + B20001 (2023 sample)",
+			dataset_name: "ACS-aligned placeholder metro metrics (2015-2025 sample)",
 			source_url: "https://api.census.gov/data/2023/acs/acs5",
 			retrieved_at: new Date(),
-			notes: "Seeded from data/processed/metro_metrics.csv",
+			notes: "Seeded from data/processed/metro_metrics.csv with 10 placeholder metros across 2015-2025",
 		},
 	});
 

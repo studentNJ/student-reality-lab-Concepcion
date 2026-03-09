@@ -4,9 +4,18 @@ test("dashboard and metro detail render", async ({ page }) => {
   await page.goto("/");
   await expect(page.getByRole("heading", { name: "The 30% Problem" })).toBeVisible();
   await expect(page.getByLabel("Year")).toBeVisible();
+  await expect(page.getByText("Showing the rent-burden snapshot for 2025.")).toBeVisible();
+  await page.getByLabel("Year").selectOption("2021");
+  await expect(page.getByText("Showing the rent-burden snapshot for 2021.")).toBeVisible();
+  await expect(page.getByText("10 metros available in the selected year.")).toBeVisible();
 
   await page.goto("/metro/35620");
   await expect(page.getByRole("heading", { name: "Metro Detail" })).toBeVisible();
+  await expect(page.getByLabel("Start year")).toBeVisible();
+  await expect(page.getByLabel("End year")).toBeVisible();
+  await page.getByLabel("Start year").selectOption("2018");
+  await page.getByLabel("End year").selectOption("2022");
+  await expect(page.getByText("Trend line from API for 2018 to 2022.")).toBeVisible();
   await expect(page.getByText("Affordability Calculator")).toBeVisible();
 });
 
